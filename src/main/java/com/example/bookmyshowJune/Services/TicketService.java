@@ -14,7 +14,7 @@ import com.example.bookmyshowJune.Repository.TicketRepository;
 import com.example.bookmyshowJune.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,8 +32,7 @@ public class TicketService {
         @Autowired
         private TicketRepository ticketRepository;
 
-        @Autowired
-        private JavaMailSender emailSender;
+
 
         public TicketResponseDto bookTicket(TicketRequestDto ticketRequestDto)throws NoUserFoundException, ShowNotFound,Exception {
 
@@ -105,7 +104,6 @@ public class TicketService {
                 simpleMessageMail.setText(body);
                 simpleMessageMail.setTo(user.getEmail());
 
-                emailSender.send(simpleMessageMail);
 
 
                 return createTicketReponseDto(show,ticket);
